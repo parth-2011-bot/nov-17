@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-birthday="false">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The  Effect</title>
+  <meta name="description" content="A highly unofficial compliment-generating experiment.">
+  <meta name="theme-color" content="#F5F0E7">
+
+  <!-- Applies the saved theme before first paint (no flash). -->
+  <script>
+    try {
+      var t = localStorage.getItem('palakEffect.theme');
+      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
+
+  <!-- Fonts (optional). If offline, the site falls back to system fonts. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..700;1,6..96,400..600&family=Caveat:wght@500;700&family=Courier+Prime:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,500..900;1,9..144,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-page="intro">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- THEME TOGGLE (always visible, on both pages) -->
+  <button id="themeToggle" class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark theme">
+    <span class="tt-opt tt-light">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span>Light</span>
+    </span>
+    <span class="tt-track" aria-hidden="true"><span class="tt-knob"></span></span>
+    <span class="tt-opt tt-dark">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="currentColor"/></svg>
+      <span>Dark</span>
+    </span>
+  </button>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <div id="app">
+    <main id="main">
+
+      <!-- =====================================================================
+           PAGE ONE : THE INTRODUCTION
+           ===================================================================== -->
+      <section id="page-intro" class="page" tabindex="-1" aria-label="Introduction">
+
+        <!-- decorations, light theme -->
+        <div class="deco only-light" aria-hidden="true">
+          <div class="bunting bday-only"></div>
+          <svg class="dd dd-star-1" viewBox="0 0 24 24"><path d="M12 2.5l2.4 6.6 7.1.6-5.4 4.6 1.8 7-5.9-3.9-6 3.8 1.9-6.9L2.5 9.8l7-.6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          <svg class="dd dd-squiggle-1" viewBox="0 0 90 24"><path d="M3 14c6-12 12-12 18 0s12 12 18 0 12-12 18 0 12 12 18 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <svg class="dd dd-spiral-1" viewBox="0 0 48 48"><path d="M24 24c0-3 4-3 4 0s-6 6-8 1-1-12 7-12 14 10 9 18-17 8-21-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <svg class="dd dd-star-2" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+
+        <!-- decorations, dark theme -->
+        <div class="deco only-dark" aria-hidden="true">
+          <div class="ruler"></div>
+          <svg class="dd dk-star-1" viewBox="0 0 24 24"><path d="M12 0c.6 7 4.6 11.4 12 12-7.4.6-11.4 5-12 12-.6-7-4.6-11.4-12-12C7.4 11.4 11.4 7 12 0z" fill="currentColor"/></svg>
+          <svg class="dd dk-star-2" viewBox="0 0 24 24"><path d="M12 0c.6 7 4.6 11.4 12 12-7.4.6-11.4 5-12 12-.6-7-4.6-11.4-12-12C7.4 11.4 11.4 7 12 0z" fill="currentColor"/></svg>
+          <div class="bday-only twinkles"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+
+        <div class="intro-wrap">
+          <img class="shinchan shinchan-intro" src="assets/images/shinchan.png" alt="" width="96" height="96">
+
+          <article class="note">
+
+            <!-- Masthead (differs per theme) -->
+            <header class="masthead">
+              <p class="mh-name">The Effect</p>
+              <p class="mh-tag only-light">an experiment, in writing</p>
+              <p class="mh-tag only-dark">after hours edition</p>
+            </header>
+
+            <p class="bday-greeting bday-only" id="introGreeting"></p>
+
+            <!-- ==============================================================
+                 EDIT THE INTRODUCTION HERE.
+                 Change the words inside the <p> tags. Keep the class names.
+                 (Handwritten margin notes are the .annot lines; they only
+                  appear in the light theme.)
+                 ============================================================== -->
+            <div class="intro-copy" id="introCopy">
+              <p class="line-lead">I have a problem.</p>
+
+              <div class="has-annot">
+                <p>I have approximately a million things I could say about you. Nice things, obviously. Some normal, some oddly specific, some that probably make absolutely no sense.</p>
+                <span class="annot annot-a only-light" aria-hidden="true">← nice things, obviously</span>
+              </div>
+
+              <div class="has-annot">
+                <p>And unfortunately, putting all of them into one message would result in an absolutely ridiculous amount of reading.</p>
+                <span class="annot annot-b only-light" aria-hidden="true">(I did the maths. It's a lot.)</span>
+              </div>
+
+              <p>So I did what any reasonable person would do.</p>
+
+              <p class="line-punch"><span>I made a compliment generator.</span></p>
+
+              <p>Press the button. Get a compliment. Repeat whenever necessary.</p>
+
+              <p class="line-close">The supply is theoretically endless.(it isnt prolly like 25 cause i got lazy).</p>
+            </div>
+            <!-- ============================ END OF INTRO ================== -->
+
+            <div class="intro-cta has-annot">
+              <button id="startBtn" class="btn btn-start" type="button">Click this </button>
+              <span class="annot annot-c only-light" aria-hidden="true">↖ this is the part where you press</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+
+      <!-- =====================================================================
+           PAGE TWO : THE COMPLIMENT GENERATOR
+           ===================================================================== -->
+      <section id="page-gen" class="page" tabindex="-1" aria-label="Compliment generator" hidden>
+
+        <div class="deco only-light" aria-hidden="true">
+          <div class="bunting bday-only"></div>
+          <svg class="dd dd-star-3" viewBox="0 0 24 24"><path d="M12 2.5l2.4 6.6 7.1.6-5.4 4.6 1.8 7-5.9-3.9-6 3.8 1.9-6.9L2.5 9.8l7-.6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          <svg class="dd dd-squiggle-2" viewBox="0 0 90 24"><path d="M3 14c6-12 12-12 18 0s12 12 18 0 12-12 18 0 12 12 18 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <svg class="dd dd-arrow-1" viewBox="0 0 100 60"><path d="M4 50C28 8 66 6 92 34M78 24l15 11-18 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div class="deco only-dark" aria-hidden="true">
+          <div class="ruler"></div>
+          <svg class="dd dk-star-1" viewBox="0 0 24 24"><path d="M12 0c.6 7 4.6 11.4 12 12-7.4.6-11.4 5-12 12-.6-7-4.6-11.4-12-12C7.4 11.4 11.4 7 12 0z" fill="currentColor"/></svg>
+          <svg class="dd dk-star-3" viewBox="0 0 24 24"><path d="M12 0c.6 7 4.6 11.4 12 12-7.4.6-11.4 5-12 12-.6-7-4.6-11.4-12-12C7.4 11.4 11.4 7 12 0z" fill="currentColor"/></svg>
+          <div class="bday-only twinkles"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+
+        <div class="gen">
+
+          <header class="gen-head">
+            <a class="back-link" id="backLink" href="#">← back to the note</a>
+
+            <div class="gen-titles">
+              <h1 class="gen-title">THE EFFECT</h1>
+              <p class="gen-sub">A highly unofficial compliment-generating experiment.</p>
+            </div>
+
+            <p class="countdown" id="countdown"></p>
+          </header>
+
+          <!-- Birthday-only block (hidden on every other day) -->
+          <div class="bday-block bday-only" id="bdayBlock">
+            <p class="bday-message" id="bdayMessage"></p>
+            <button class="gift-btn" id="giftBtn" type="button">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M3 9h18v4H3zM5 13h14v8H5zM12 9v12M12 9C9 9 7 7.5 7.800 6 9 4 11.500 6 12 9c.5-3 3-5 4.200-3C17 7.500 15 9 12 9z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+              <span>psst, a little something</span>
+            </button>
+          </div>
+
+          <!-- THE COMPLIMENT DISPLAY -->
+          <div class="display" id="display">
+            <span class="corner c1 only-dark" aria-hidden="true"></span>
+            <span class="corner c2 only-dark" aria-hidden="true"></span>
+            <span class="corner c3 only-dark" aria-hidden="true"></span>
+            <span class="corner c4 only-dark" aria-hidden="true"></span>
+
+            <p class="cat" id="catLabel"></p>
+
+            <div class="slip">
+              <p class="compliment" id="complimentText" aria-hidden="true"></p>
+            </div>
+
+            <svg class="spark only-light" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.500l2.500 7 7.500.700-5.700 4.900 1.900 7.400L12 17.700 5.800 21.500l2-7.400L2 9.200l7.500-.7z" fill="currentColor"/></svg>
+            <svg class="spark only-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.6 7 4.6 11.400 12 12-7.400.6-11.400 5-12 12-.6-7-4.600-11.400-12-12C7.400 11.400 11.400 7 12 0z" fill="currentColor"/></svg>
+          </div>
+
+          <div class="controls">
+            <button id="genBtn" class="btn btn-gen" type="button">GENERATE ANOTHER</button>
+
+            <div class="counter" id="counter" role="status">
+              <!-- light: handwritten tally -->
+              <span class="ct-light only-light" aria-hidden="true">
+                <span class="ct-num" id="ctNum">0</span>
+                <span class="ct-of" id="ctOf">of 0 found</span>
+              </span>
+              <!-- dark: mechanical counter -->
+              <span class="ct-dark only-dark" aria-hidden="true">
+                <span class="led"></span>
+                <span class="ct-digits" id="ctDigits"></span>
+                <span class="ct-of" id="ctOfDark">found</span>
+              </span>
+              <span class="sr-only" id="ctSr"></span>
+            </div>
+
+            <div class="filter">
+              <button id="filterToggle" class="filter-toggle" type="button" aria-expanded="false" aria-controls="filterChips">narrow it down</button>
+              <div id="filterChips" class="chips" hidden></div>
+            </div>
+          </div>
+
+          <p class="all-found" id="allFound" hidden>Every single one found. The machine is reshuffling itself.</p>
+
+          <img class="shinchan shinchan-gen" src="assets/images/shinchan.png" alt="" width="84" height="84">
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="sr-only" id="srLive" aria-live="polite"></div>
+
+  <!-- Birthday-only surprise -->
+  <div id="surprise" class="surprise" hidden role="dialog" aria-modal="true" aria-labelledby="surpriseTitle">
+    <div class="surprise-inner">
+      <p class="surprise-title" id="surpriseTitle">One more thing</p>
+      <p class="surprise-text" id="surpriseText"></p>
+      <button id="surpriseClose" class="btn btn-small" type="button">close</button>
+    </div>
+  </div>
+  <div id="confetti" aria-hidden="true"></div>
+
+  <script src="js/compliments.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
